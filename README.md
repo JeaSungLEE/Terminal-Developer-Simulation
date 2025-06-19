@@ -1,4 +1,6 @@
-# Professional Developer Simulator / 프로페셔널 개발자 시뮬레이터 / 专业开发者模拟器 / プロフェッショナル開発者シミュレーター
+# Professional Developer Simulator
+
+![Demo](demo.gif)
 
 ## English
 

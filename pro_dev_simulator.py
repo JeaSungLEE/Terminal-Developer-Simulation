@@ -2161,8 +2161,8 @@ def frontend_code_splitting():
     print(f"{GRAY}Analyzing bundle chunks...{RESET}\n")
     
     chunks = [
-        ("main", "124.5KB", ["App", "Router", "Layout"]),
-        ("vendor", "234.8KB", ["react", "react-dom", "redux"]),
+        ("main", "124.5KB", ["App", "Router", "Layout"], False),
+        ("vendor", "234.8KB", ["react", "react-dom", "redux"], False),
         ("dashboard", "45.2KB", ["Dashboard", "Charts", "Analytics"], True),
         ("profile", "23.1KB", ["UserProfile", "Settings"], True),
         ("admin", "67.8KB", ["AdminPanel", "UserManagement"], True)

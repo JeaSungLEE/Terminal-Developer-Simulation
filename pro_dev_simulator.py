@@ -970,19 +970,23 @@ def backend_redis_caching():
     type_text(f"{GRAY}$ redis-cli{RESET}", 0.02)
     
     operations = [
-        ("SET", "user:1234:profile", '{"name":"John","email":"john@example.com"}'),
-        ("GET", "user:1234:profile", "Cache hit"),
-        ("SETEX", "session:abc123", "3600", "Session data cached for 1 hour"),
-        ("KEYS", "user:*", "Found 1,234 keys"),
-        ("INFO", "memory", "used_memory_human: 125.34M")
+        ("SET", "user:1234:profile", '{"name":"John","email":"john@example.com"}', None),
+        ("GET", "user:1234:profile", None, "Cache hit"),
+        ("SETEX", "session:abc123", "3600 Session data cached for 1 hour", None),
+        ("KEYS", "user:*", None, "Found 1,234 keys"),
+        ("INFO", "memory", None, "used_memory_human: 125.34M")
     ]
     
-    for cmd, key, result in operations:
-        if cmd in ["SET", "SETEX"]:
-            print(f"{GRAY}127.0.0.1:6379> {cmd} {key} {result}{RESET}")
+    for cmd, key, value, output in operations:
+        if cmd == "SET":
+            print(f"{GRAY}127.0.0.1:6379> {cmd} {key} {value}{RESET}")
+            print(f"{GREEN}OK{RESET}")
+        elif cmd == "SETEX":
+            print(f"{GRAY}127.0.0.1:6379> {cmd} {key} {value}{RESET}")
+            print(f"{GREEN}OK{RESET}")
         else:
             print(f"{GRAY}127.0.0.1:6379> {cmd} {key}{RESET}")
-            print(f"{GREEN}{result}{RESET}")
+            print(f"{GREEN}{output}{RESET}")
         time.sleep(0.5)
     
     print(f"\n{GREEN}✓ Cache operations completed{RESET}")
